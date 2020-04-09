@@ -3,18 +3,17 @@ import { addTodo, deleteTodo, updateTodo } from './todo.action';
 import { Todo } from '../models/todo';
 
 export interface State {
-  todos: Todo[];
+  todos: Array<Todo>;
 }
 
 export const initialState: State = {
-  todos: [],
+  todos: Array<Todo>(),
 };
 
 export const todosReducer = createReducer(
   initialState,
   on(addTodo, (state, actions) => {
-    state.todos = [...state.todos, actions];
-    return state;
+    return { ...state, todos: [...state.todos, actions] };
   }),
   on(deleteTodo, (state, actions) => {
     state.todos = state.todos.filter((product) => product.id !== actions.id);

@@ -1,4 +1,4 @@
-<form [formGroup]="todoForm" (ngSubmit)="addProduct()">
+<form [formGroup]="todoForm" (ngSubmit)="addTodo()">
   <input
     name="name"
     placeholder="name"
@@ -8,4 +8,4 @@
   <input name="date" autocomplete="off" formControlName="date" />
 </form>
 
-<button (click)="addProduct()">Add Todo</button>
+<button (click)="addTodo()">Add Todo</button>

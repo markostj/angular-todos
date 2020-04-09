@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 // store
 import { todosReducer } from './modules/todos/store/todo.reducer';
 import { State } from './modules/todos/store/todo.reducer';
-import { localStorageSyncReducer } from './modules/todos/store/localStorage';
 
 const reducers: ActionReducerMap<any> = {
   todos: todosReducer,
@@ -22,14 +21,12 @@ export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<State>>(
   'todos'
 );
 
-const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(REDUCER_TOKEN, { metaReducers }),
+    StoreModule.forRoot(REDUCER_TOKEN),
     TodosModule,
   ],
   providers: [
