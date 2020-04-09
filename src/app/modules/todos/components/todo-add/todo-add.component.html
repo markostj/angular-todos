@@ -1,0 +1,11 @@
+<form [formGroup]="todoForm" (ngSubmit)="addProduct()">
+  <input
+    name="name"
+    placeholder="name"
+    autocomplete="off"
+    formControlName="name"
+  />
+  <input name="date" autocomplete="off" formControlName="date" />
+</form>
+
+<button (click)="addProduct()">Add Todo</button>

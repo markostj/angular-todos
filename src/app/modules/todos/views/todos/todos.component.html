@@ -1,0 +1,10 @@
+<h1>Todos</h1>
+
+<app-todo-add></app-todo-add>
+
+<div class="todos" *ngFor="let todo of todos">
+  <div (click)="toogleCompletion()" class="todo">
+    <p>{{ todo.name }}</p>
+    <p>{{ todo.date }}</p>
+  </div>
+</div>
