@@ -2,8 +2,13 @@
 
 <app-todo-add></app-todo-add>
 
-<div *ngFor="let item of todos | keyvalue">
-  Key: <b>{{ item.date }}</b> and Value: <b>{{ item.value }}</b>
+<div *ngFor="let todo of todos | keyvalue">
+  Key: <b>{{ todo.date }}</b> and Value: <b>{{ todo.value }}</b>
 </div>
-<p (click)="toogleCompletion()">ovo je</p>
-<!-- <p>{{ todos.name }}</p> -->
+<p (click)="consoleTodo()">console log todo</p>
+
+<div [formGroup]="idForm">
+  <input type="text" formControlName="id" />
+</div>
+
+<button (click)="deleteTodo()">Delete todo</button>

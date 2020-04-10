@@ -1,8 +1,10 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Todo } from '../../models/todo';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../../store/todo.reducer';
+import { deleteTodo } from '../../store/todo.action';
+import { FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -10,29 +12,39 @@ import { State } from '../../store/todo.reducer';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnChanges, OnInit {
-  productsSubscription: Subscription;
+  todosSubscription: Subscription;
   todos: Todo[];
-  constructor(private store: Store<State>) {}
+  id = new FormControl('');
+
+  idForm = this.fb.group({
+    id: [''],
+  });
+
+  constructor(private store: Store<State>, private fb: FormBuilder) {}
 
   ngOnChanges() {
     console.log(this.todos);
   }
 
   ngOnInit(): void {
-    /* this.todos = [
-      { name: 'neki todo', date: '5.2.2020.', completed: false, id: '5324' },
-      { name: 'neki todo', date: '5.2.2020.', completed: false, id: '5324' },
-      { name: 'neki todo', date: '5.2.2020.', completed: false, id: '5324' },
-    ]; */
-
-    this.productsSubscription = this.store.subscribe((state: State) => {
-      this.todos = state.todos;
-    });
-
-    console.log(this.todos);
+    this.todosSubscription = this.store
+      .pipe(select('todos'))
+      .subscribe((state) => {
+        console.log(state);
+        this.todos = state;
+      });
   }
 
   toogleCompletion() {
+    // Change Completion
+  }
+
+  deleteTodo() {
+    console.log(this.idForm.value.id);
+    this.store.dispatch(deleteTodo({ id: this.idForm.value.id }));
+  }
+
+  consoleTodo() {
     this.store.subscribe((state: State) => {
       console.log(state.todos);
     });
