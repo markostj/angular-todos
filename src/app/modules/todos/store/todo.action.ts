@@ -4,7 +4,7 @@ import { Todo } from '../models/todo';
 enum ProductActions {
   AddTodo = 'todo/add',
   DeleteTodo = 'todo/delete',
-  UpdateTodo = 'todo/update',
+  UpdateCompletion = 'todo/updateCompletion',
 }
 
 export const addTodo = createAction(ProductActions.AddTodo, props<Todo>());
@@ -14,8 +14,7 @@ export const deleteTodo = createAction(
   props<{ id: string }>()
 );
 
-/* We are going to update all value in Todo */
-export const updateTodo = createAction(
-  ProductActions.UpdateTodo,
-  props<Todo>()
+export const updateCompletion = createAction(
+  ProductActions.UpdateCompletion,
+  props<{ id: string }>()
 );

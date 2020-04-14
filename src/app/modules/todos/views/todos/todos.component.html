@@ -2,13 +2,37 @@
 
 <app-todo-add></app-todo-add>
 
-<div *ngFor="let todo of todos | keyvalue">
-  Key: <b>{{ todo.date }}</b> and Value: <b>{{ todo.value }}</b>
-</div>
-<p (click)="consoleTodo()">console log todo</p>
+<button (click)="showAll()">Show all</button>
+<button (click)="showCompleted()">Show completed</button>
+<button (click)="showUncompleted()">Show uncompleted</button>
 
-<div [formGroup]="idForm">
-  <input type="text" formControlName="id" />
-</div>
+<ng-container *ngIf="show == 'all'">
+  <div *ngFor="let todo of todos | todosShow">
+    <div
+      [className]="todo.completed ? 'todo--completed' : 'todo--uncompleted'"
+      (click)="toggleCompletion(todo.id)"
+      class="todo"
+    >
+      <b>{{ todo.name }}</b> <b>{{ todo.date }}</b>
+      <p (click)="deleteTodo(todo.id)">X</p>
+    </div>
+  </div>
+</ng-container>
 
-<button (click)="deleteTodo()">Delete todo</button>
+<ng-container *ngIf="show == 'completed'">
+  <div *ngFor="let todo of todos | todosShow: 'completed'">
+    <div (click)="toggleCompletion(todo.id)" class="todo">
+      <b>{{ todo.name }}</b> <b>{{ todo.date }}</b>
+      <p (click)="deleteTodo(todo.id)">X</p>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="show == 'uncompleted'">
+  <div *ngFor="let todo of todos | todosShow: 'uncompleted'">
+    <div (click)="toggleCompletion(todo.id)" class="todo">
+      <b>{{ todo.name }}</b> <b>{{ todo.date }}</b>
+      <p (click)="deleteTodo(todo.id)">X</p>
+    </div>
+  </div>
+</ng-container>

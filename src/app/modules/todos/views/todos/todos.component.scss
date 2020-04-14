@@ -1,0 +1,11 @@
+.todo {
+  display: flex;
+  border: 1px solid black;
+}
+
+.todo--completed {
+  background-color: red;
+}
+.todo--uncompleted {
+  background-color: grey;
+}

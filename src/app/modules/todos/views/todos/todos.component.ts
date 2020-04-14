@@ -3,50 +3,59 @@ import { Todo } from '../../models/todo';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../store/todo.reducer';
-import { deleteTodo } from '../../store/todo.action';
+import { deleteTodo, updateCompletion } from '../../store/todo.action';
 import { FormControl, FormBuilder } from '@angular/forms';
 
+enum show {
+  All = 'all',
+  Completed = 'completed',
+  Uncompleted = 'uncompleted',
+}
+interface AppState {
+  todos: State;
+  show: string;
+}
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss'],
 })
-export class TodosComponent implements OnChanges, OnInit {
+export class TodosComponent implements OnInit {
   todosSubscription: Subscription;
   todos: Todo[];
   id = new FormControl('');
+  show = show.All;
 
   idForm = this.fb.group({
     id: [''],
   });
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {}
-
-  ngOnChanges() {
-    console.log(this.todos);
-  }
+  constructor(private store: Store<AppState>, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.todosSubscription = this.store
       .pipe(select('todos'))
-      .subscribe((state) => {
-        console.log(state);
-        this.todos = state;
+      .subscribe((state: State) => {
+        this.todos = state.todos;
       });
   }
 
-  toogleCompletion() {
-    // Change Completion
+  toggleCompletion(id: string) {
+    this.store.dispatch(updateCompletion({ id }));
+    // Make some kind of Complete sign to click on it
   }
 
-  deleteTodo() {
-    console.log(this.idForm.value.id);
-    this.store.dispatch(deleteTodo({ id: this.idForm.value.id }));
+  deleteTodo(id: string) {
+    this.store.dispatch(deleteTodo({ id }));
   }
 
-  consoleTodo() {
-    this.store.subscribe((state: State) => {
-      console.log(state.todos);
-    });
+  showAll() {
+    this.show = show.All;
+  }
+  showCompleted() {
+    this.show = show.Completed;
+  }
+  showUncompleted() {
+    this.show = show.Uncompleted;
   }
 }
