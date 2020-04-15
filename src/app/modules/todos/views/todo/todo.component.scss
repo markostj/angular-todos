@@ -1,0 +1,37 @@
+.todo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  margin-top: 12px;
+  padding: 20px 0;
+}
+
+.todo__link {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.todo__delete {
+  text-align: center;
+  background-color: red;
+}
+
+.todo__form-update {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  margin-top: 12px;
+  padding: 20px 0;
+}
+
+.todo__form-update input {
+  border: 1px solid lightblue;
+}
+
+.todo__form-update__inputs {
+  display: flex;
+  flex-direction: column;
+}

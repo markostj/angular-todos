@@ -42,7 +42,6 @@ export class TodosComponent implements OnInit {
 
   toggleCompletion(id: string) {
     this.store.dispatch(updateCompletion({ id }));
-    // Make some kind of Complete sign to click on it
   }
 
   deleteTodo(id: string) {

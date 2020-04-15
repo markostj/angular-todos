@@ -1,3 +1,36 @@
-<p>todo works!</p>
+<button (click)="backToTodos()" class="btn">Back</button>
 
-<p>{{ id }}</p>
+<div *ngFor="let t of todo">
+  <div
+    *ngIf="!update"
+    (click)="updateTodo(t.name, t.date, t.completed)"
+    class="todo"
+  >
+    <div class="todo__link">
+      <b>{{ t.name }}</b>
+      <b>{{ t.date }}</b>
+    </div>
+  </div>
+
+  <form *ngIf="update" class="todo__form-update" [formGroup]="todoUpdate">
+    <div class="todo__form-update__inputs">
+      <div>
+        <input name="name" autocomplete="off" formControlName="name" />
+        <input name="date" autocomplete="off" formControlName="date" />
+      </div>
+
+      <div>
+        <label for="completed">Completed:</label>
+        <input name="completed" type="checkbox" formControlName="completed" />
+      </div>
+    </div>
+
+    <button class="btn" (click)="saveTodo()">Save</button>
+  </form>
+
+  <div class="btn-group">
+    <button class="btn todo__delete" (click)="deleteTodo(t.id)">
+      Delete this Todo
+    </button>
+  </div>
+</div>

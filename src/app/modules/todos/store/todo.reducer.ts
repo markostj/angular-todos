@@ -1,7 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { addTodo, deleteTodo, updateCompletion } from './todo.action';
+import {
+  addTodo,
+  deleteTodo,
+  updateCompletion,
+  updateTodo,
+} from './todo.action';
 import { Todo } from '../models/todo';
-import { TodoComponent } from '../views/todo/todo.component';
 
 export interface State {
   todos: Todo[];
@@ -27,6 +31,21 @@ export const todosReducer = createReducer(
       ...state,
       todos: state.todos.map((todo) =>
         todo.id === actions.id ? { ...todo, completed: !todo.completed } : todo
+      ),
+    };
+  }),
+  on(updateTodo, (state, actions) => {
+    return {
+      ...state,
+      todos: state.todos.map((todo) =>
+        todo.id === actions.id
+          ? {
+              ...todo,
+              name: actions.name,
+              date: actions.date,
+              completed: actions.completed,
+            }
+          : todo
       ),
     };
   })

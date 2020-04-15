@@ -1,11 +1,35 @@
 .todo {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   border: 1px solid black;
+  margin-top: 12px;
+  padding: 20px 0;
 }
 
-.todo--completed {
-  background-color: red;
+.todo__link {
+  flex: 4;
+  display: flex;
+  justify-content: space-evenly;
 }
-.todo--uncompleted {
-  background-color: grey;
+
+.todo__completion {
+  flex: 1;
+  max-width: 20px;
+  height: 20px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.todo__completion--completed {
+  background-color: green;
+}
+.todo__completion--uncompleted {
+}
+
+.todo__delete {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
 }

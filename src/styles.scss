@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+button,
+a,
+input {
+  transition: all 0.3s ease;
+}
+
+button:hover,
+a:hover,
+input:hover {
+  opacity: 0.6;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.btn {
+  border-width: 0;
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin: 0 10px;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn--primary {
+  background-color: green;
+}
+.btn--secondary {
+  background-color: red;
+}
