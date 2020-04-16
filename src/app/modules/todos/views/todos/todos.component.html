@@ -36,9 +36,11 @@
         <b>{{ todo.name }}</b>
         <b>{{ todo.date }}</b>
       </a>
+
       <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
         <div *ngIf="todo.completed" class="todo__completion__tick"></div>
       </div>
+
       <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
     </div>
   </div>
@@ -51,9 +53,11 @@
         <b>{{ todo.name }}</b>
         <b>{{ todo.date }}</b>
       </a>
+
       <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
         <div *ngIf="todo.completed" class="todo__completion__tick"></div>
       </div>
+
       <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
     </div>
   </div>
