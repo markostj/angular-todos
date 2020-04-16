@@ -1,10 +1,16 @@
-<h1>Todos</h1>
+<h1 class="todos__title">Todos</h1>
 
 <app-todo-add></app-todo-add>
 
-<button (click)="showAll()">Show all</button>
-<button (click)="showCompleted()">Show completed</button>
-<button (click)="showUncompleted()">Show uncompleted</button>
+<div class="btn-group">
+  <button class="btn btn--completion" (click)="showAll()">Show all</button>
+  <button class="btn btn--completion" (click)="showCompleted()">
+    Show completed
+  </button>
+  <button class="btn btn--completion" (click)="showUncompleted()">
+    Show uncompleted
+  </button>
+</div>
 
 <ng-container *ngIf="show == 'all'">
   <div *ngFor="let todo of todos | todosShow">
@@ -13,15 +19,11 @@
         <b>{{ todo.name }}</b>
         <b>{{ todo.date }}</b>
       </a>
-      <div
-        (click)="toggleCompletion(todo.id)"
-        [className]="
-          todo.completed
-            ? 'todo__completion--completed'
-            : 'todo__completion--uncompleted'
-        "
-        [ngClass]="'todo__completion'"
-      ></div>
+
+      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
+        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
+      </div>
+
       <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
     </div>
   </div>
@@ -34,15 +36,9 @@
         <b>{{ todo.name }}</b>
         <b>{{ todo.date }}</b>
       </a>
-      <div
-        (click)="toggleCompletion(todo.id)"
-        [className]="
-          todo.completed
-            ? 'todo__completion--completed'
-            : 'todo__completion--uncompleted'
-        "
-        [ngClass]="'todo__completion'"
-      ></div>
+      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
+        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
+      </div>
       <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
     </div>
   </div>
@@ -55,15 +51,9 @@
         <b>{{ todo.name }}</b>
         <b>{{ todo.date }}</b>
       </a>
-      <div
-        (click)="toggleCompletion(todo.id)"
-        [className]="
-          todo.completed
-            ? 'todo__completion--completed'
-            : 'todo__completion--uncompleted'
-        "
-        [ngClass]="'todo__completion'"
-      ></div>
+      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
+        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
+      </div>
       <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
     </div>
   </div>

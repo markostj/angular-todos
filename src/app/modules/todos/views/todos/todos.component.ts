@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewEncapsulation } from '@angular/core';
 import { Todo } from '../../models/todo';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';

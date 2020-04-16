@@ -6,10 +6,16 @@ input {
   transition: all 0.3s ease;
 }
 
+button {
+  outline: 0;
+}
+
 button:hover,
 a:hover,
 input:hover {
   opacity: 0.6;
+  position: relative;
+  bottom: 2px;
 }
 
 a {
@@ -22,12 +28,17 @@ a {
   border-radius: 20px;
   padding: 8px 20px;
   margin: 0 10px;
+  color: #fff;
 }
 
 .btn-group {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .btn--primary {
@@ -35,4 +46,36 @@ a {
 }
 .btn--secondary {
   background-color: red;
+}
+.btn--tertiary {
+  background-color: lightgray;
+}
+
+.btn--completion {
+  background-color: lightskyblue;
+  color: #000;
+
+  @media (max-width: 500px) {
+    margin-top: 10px;
+  }
+}
+.btn--back {
+  position: relative;
+}
+
+.left__arrow::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  display: inline-block;
+  border-left: 1px solid #e9a239;
+  border-top: 1px solid #e9a239;
+  width: 6px;
+  height: 6px;
+  transform: translate(0, -50%) rotate(-45deg);
+}
+.left__arrow::before {
+  border-left: 1px solid #000000;
+  border-top: 1px solid #000000;
 }

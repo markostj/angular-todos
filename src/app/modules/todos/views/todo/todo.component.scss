@@ -5,6 +5,8 @@
   border: 1px solid black;
   margin-top: 12px;
   padding: 20px 0;
+  box-shadow: 5px 5px 5px grey;
+  cursor: pointer;
 }
 
 .todo__link {
@@ -24,7 +26,11 @@
   align-items: center;
   border: 1px solid black;
   margin-top: 12px;
-  padding: 20px 0;
+  padding: 20px 10px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .todo__form-update input {
@@ -34,4 +40,22 @@
 .todo__form-update__inputs {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.todo__form-update__text-input {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.todo__form-update__inputs input:first-child {
+  flex: 2;
+  font-size: 14px;
+}
+
+.todo__form-update__inputs input:last-child {
+  flex: 1;
+  margin-left: 4px;
+  font-size: 14px;
+  max-width: 80px;
 }

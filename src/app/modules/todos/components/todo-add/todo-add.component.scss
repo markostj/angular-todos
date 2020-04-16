@@ -4,4 +4,26 @@
 
 .todo-add__form {
   display: flex;
+  flex: 4;
+}
+
+.todo-add__form input {
+  padding-left: 10px;
+}
+
+.todo-add__form__name {
+  flex: 3;
+  margin-right: 8px;
+}
+
+.todo-add__form__date {
+  flex: 2;
+
+  @media (max-width: 500px) {
+    max-width: 72px;
+  }
+}
+
+.todo-add__btn {
+  flex: 1;
 }

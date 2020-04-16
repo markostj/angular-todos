@@ -1,3 +1,7 @@
+.todos__title {
+  text-align: center;
+}
+
 .todo {
   display: flex;
   justify-content: space-around;
@@ -5,6 +9,7 @@
   border: 1px solid black;
   margin-top: 12px;
   padding: 20px 0;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .todo__link {
@@ -32,4 +37,37 @@
   text-align: center;
   cursor: pointer;
   margin: 0;
+}
+
+.todo__completion__tick {
+  position: relative;
+  display: inline-block;
+  right: 3px;
+  bottom: 1px;
+  width: 18px;
+  height: 20px;
+}
+
+.todo__completion__tick::before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 50%;
+  width: 3px;
+  background-color: #336699;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
+}
+
+.todo__completion__tick::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #336699;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
 }

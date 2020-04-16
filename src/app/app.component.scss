@@ -1,0 +1,11 @@
+@import "normalize.css";
+
+.main-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 96px;
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
+}
