@@ -6,7 +6,7 @@ import { State } from '../../store/todo.reducer';
 import { deleteTodo, updateCompletion } from '../../store/todo.action';
 import { FormControl, FormBuilder } from '@angular/forms';
 
-enum show {
+enum Show {
   All = 'all',
   Completed = 'completed',
   Uncompleted = 'uncompleted',
@@ -24,12 +24,13 @@ export class TodosComponent implements OnInit {
   todosSubscription: Subscription;
   todos: Todo[];
   id = new FormControl('');
-  show = show.All;
+  show = Show.All;
 
   idForm = this.fb.group({
     id: [''],
   });
 
+  Show = Show;
   constructor(private store: Store<AppState>, private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -48,13 +49,20 @@ export class TodosComponent implements OnInit {
     this.store.dispatch(deleteTodo({ id }));
   }
 
-  showAll() {
-    this.show = show.All;
-  }
-  showCompleted() {
-    this.show = show.Completed;
-  }
-  showUncompleted() {
-    this.show = show.Uncompleted;
+  showFilter(show: string) {
+    switch (show) {
+      case Show.All:
+        this.show = Show.All;
+        return;
+      case Show.Completed:
+        this.show = Show.Completed;
+        return;
+      case Show.Uncompleted:
+        this.show = Show.Uncompleted;
+        return;
+      default:
+        this.show = Show.All;
+        return;
+    }
   }
 }

@@ -3,62 +3,28 @@
 <app-todo-add></app-todo-add>
 
 <div class="btn-group">
-  <button class="btn btn--completion" (click)="showAll()">Show all</button>
-  <button class="btn btn--completion" (click)="showCompleted()">
+  <button class="btn btn--completion" (click)="showFilter(Show.All)">
+    Show all
+  </button>
+  <button class="btn btn--completion" (click)="showFilter(Show.Completed)">
     Show completed
   </button>
-  <button class="btn btn--completion" (click)="showUncompleted()">
+  <button class="btn btn--completion" (click)="showFilter(Show.Uncompleted)">
     Show uncompleted
   </button>
 </div>
 
-<ng-container *ngIf="show == 'all'">
-  <div *ngFor="let todo of todos | todosShow">
-    <div class="todo">
-      <a class="todo__link" [routerLink]="['/todo', todo.id]">
-        <b>{{ todo.name }}</b>
-        <b>{{ todo.date }}</b>
-      </a>
+<div *ngFor="let todo of todos | todosShow: show">
+  <div class="todo">
+    <a class="todo__link" [routerLink]="['/todo', todo.id]">
+      <b>{{ todo.name }}</b>
+      <b>{{ todo.date }}</b>
+    </a>
 
-      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
-        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
-      </div>
-
-      <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
+    <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
+      <div *ngIf="todo.completed" class="todo__completion__tick"></div>
     </div>
+
+    <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
   </div>
-</ng-container>
-
-<ng-container *ngIf="show == 'completed'">
-  <div *ngFor="let todo of todos | todosShow: 'completed'">
-    <div class="todo">
-      <a class="todo__link" [routerLink]="['/todo', todo.id]">
-        <b>{{ todo.name }}</b>
-        <b>{{ todo.date }}</b>
-      </a>
-
-      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
-        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
-      </div>
-
-      <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
-    </div>
-  </div>
-</ng-container>
-
-<ng-container *ngIf="show == 'uncompleted'">
-  <div *ngFor="let todo of todos | todosShow: 'uncompleted'">
-    <div class="todo">
-      <a class="todo__link" [routerLink]="['/todo', todo.id]">
-        <b>{{ todo.name }}</b>
-        <b>{{ todo.date }}</b>
-      </a>
-
-      <div (click)="toggleCompletion(todo.id)" [ngClass]="'todo__completion'">
-        <div *ngIf="todo.completed" class="todo__completion__tick"></div>
-      </div>
-
-      <p class="todo__delete" (click)="deleteTodo(todo.id)">X</p>
-    </div>
-  </div>
-</ng-container>
+</div>
