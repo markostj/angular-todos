@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import * as uuid from 'uuid/v1';
 import { State } from '../../store/todo.reducer';
 import { Store } from '@ngrx/store';
@@ -23,7 +23,7 @@ export class TodoAddComponent implements OnInit {
     '.';
 
   todoForm = this.fb.group({
-    name: [''],
+    name: ['', Validators.required],
     date: [this.date],
     completed: [false],
   });
@@ -35,6 +35,10 @@ export class TodoAddComponent implements OnInit {
   ngOnInit(): void {}
 
   addTodo() {
+    if (this.todoForm.status === 'INVALID') {
+      alert('Name input is empty');
+      return;
+    }
     this.todo = {
       name: this.todoForm.value.name,
       date: this.todoForm.value.date,
@@ -43,10 +47,6 @@ export class TodoAddComponent implements OnInit {
     };
     this.store.dispatch(addTodo(this.todo));
 
-    this.todoForm.setValue({
-      name: [''],
-      date: [this.date],
-      completed: [false],
-    });
+    this.todoForm.reset({ date: this.date });
   }
 }
