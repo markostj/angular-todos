@@ -15,7 +15,12 @@
     </div>
   </div>
 
-  <form *ngIf="update" class="todo__form-update" [formGroup]="todoUpdate">
+  <form
+    *ngIf="update"
+    class="todo__form-update"
+    [formGroup]="todoUpdate"
+    (ngSubmit)="saveTodo()"
+  >
     <div class="todo__form-update__inputs">
       <div class="todo__form-update__text-input">
         <input name="name" autocomplete="off" formControlName="name" />
@@ -28,7 +33,7 @@
       </div>
     </div>
 
-    <button class="btn btn--primary" (click)="saveTodo()">Save</button>
+    <button type="submit" class="btn btn--primary">Save</button>
   </form>
 
   <div class="btn-group">
